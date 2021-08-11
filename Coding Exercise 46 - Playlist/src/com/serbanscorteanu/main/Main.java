@@ -66,7 +66,7 @@ public class Main {
 
 		printPlaylist(playlist);
 		System.out.println();
-		start(playlist);
+		play(playlist);
 
 	}
 
@@ -78,7 +78,7 @@ public class Main {
 		}
 	}
 
-	public static void start(LinkedList<Song> playList) {
+	public static void play(LinkedList<Song> playList) {
 		// need to get input from user => need scanner
 		Scanner scanner = new Scanner(System.in);
 		boolean quit = false; // use for the while loop - while quit is false show the menu
@@ -188,12 +188,19 @@ public class Main {
 						}
 						break;
 					case 5:
+						System.out.println("Songs in playlist: ");
+						while (playlistIterator.hasNext()) {
+							System.out.println(playlistIterator.next());
+							goingForward = true;
+						}
+						break;
+					case 6:
 						printMenu();
 						break;
 					}
 				} else {
 					scanner.nextLine();
-					System.out.println("Only digits from 0 - 5 accepted");
+					System.out.println("Only digits from 0 - 6 accepted");
 					continue;
 				}
 			}
@@ -209,7 +216,8 @@ public class Main {
 		System.out.println("2 - to skip backwards");
 		System.out.println("3 - to replay current song");
 		System.out.println("4 - to remove current song");
-		System.out.println("5 - show menu");
+		System.out.println("5 - to show playlist");
+		System.out.println("6 - to show menu");
 	}
 
 }

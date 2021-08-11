@@ -28,7 +28,7 @@ public class Album {
 	private Song findSong(String title) {
 		// return song if found else null
 		for (Song song : songs) {
-			if (song.getTitle() == title) {
+			if (song.getTitle().equals(title)) {
 				return song;
 			}
 		}
