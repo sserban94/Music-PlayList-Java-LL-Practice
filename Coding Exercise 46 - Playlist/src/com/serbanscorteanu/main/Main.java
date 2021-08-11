@@ -161,38 +161,47 @@ public class Main {
 						}
 						break;
 					case 4:
-						if (goingForward) {
-							if (playlistIterator.hasPrevious()) {
-								System.out.println("Deleting: " + playlistIterator.previous().getTitle());
-								playlistIterator.remove();
-								System.out.println("Done");
-								goingForward = false;
-							} else {
-								System.out.println("Deleting: " + playlistIterator.next().getTitle());
-								playlistIterator.remove();
-								goingForward = true;
-							}
+							// this can be done in fewer lines of code
+//						if (goingForward) {
+//							if (playlistIterator.hasPrevious()) {
+//								System.out.println("Deleting: " + playlistIterator.previous().getTitle());
+//								playlistIterator.remove();
+//								System.out.println("Done");
+//								goingForward = false;
+//							} else {
+//								System.out.println("Deleting: " + playlistIterator.next().getTitle());
+//								playlistIterator.remove();
+//								goingForward = true;
+//							}
+//						}
+//						else {
+//							if (playlistIterator.hasNext()) {
+//								System.out.println("Deleting " + playlistIterator.next().getTitle());
+//								playlistIterator.remove();
+//								System.out.println("Done");
+//								goingForward = true;
+//							} else {
+//								System.out.println("Now playing " + playlistIterator.previous().getTitle());
+//								playlistIterator.remove();
+//								System.out.println("Done");
+//								goingForward = false;
+//							}
+//						}
+						
+						// better shorter version
+						playlistIterator.remove();
+						if (playlistIterator.hasNext()) {
+							System.out.println("Now playing " + playlistIterator.next());
+							goingForward = true;	// why does everything work ok without this?
+						} else if (playlistIterator.hasPrevious()) {
+							System.out.println("Now playing " + playlistIterator.previous());
+							goingForward = false;
 						}
-						else {
-							if (playlistIterator.hasNext()) {
-								System.out.println("Deleting " + playlistIterator.next().getTitle());
-								playlistIterator.remove();
-								System.out.println("Done");
-								goingForward = true;
-							} else {
-								System.out.println("Now playing " + playlistIterator.previous().getTitle());
-								playlistIterator.remove();
-								System.out.println("Done");
-								goingForward = false;
-							}
-						}
+						
 						break;
 					case 5:
 						System.out.println("Songs in playlist: ");
-						while (playlistIterator.hasNext()) {
-							System.out.println(playlistIterator.next());
-							goingForward = true;
-						}
+						printPlaylist(playList);
 						break;
 					case 6:
 						printMenu();
